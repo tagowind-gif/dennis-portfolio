@@ -1,0 +1,151 @@
+/* =============================================================
+   INFO1005 | Dennis Tan | V9 Final HD Polish
+   Purpose: retain the bespoke architectural design while using
+   actual Bootstrap 5 row/col classes for major page layouts.
+   This file documents the intentional component-level overrides.
+   ============================================================= */
+
+/* 01. Structural layout: supported by Bootstrap 5 grid and offline CSS fallback. */
+.v9-bootstrap-grid {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  margin-left: calc(-.5 * var(--bs-gutter-x));
+  margin-right: calc(-.5 * var(--bs-gutter-x));
+  margin-top: calc(-1 * var(--bs-gutter-y));
+}
+.v9-bootstrap-grid > [class*="col-"] {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  padding-left: calc(.5 * var(--bs-gutter-x));
+  padding-right: calc(.5 * var(--bs-gutter-x));
+  margin-top: var(--bs-gutter-y);
+}
+@media (min-width:576px){
+  .v9-bootstrap-grid > .col-sm-6 {width:50%;}
+}
+@media (min-width:768px){
+  .v9-bootstrap-grid > .col-md-4 {width:33.333333%;}
+  .v9-bootstrap-grid > .col-md-6 {width:50%;}
+}
+@media (min-width:992px){
+  .v9-bootstrap-grid > .col-lg-3 {width:25%;}
+  .v9-bootstrap-grid > .col-lg-4 {width:33.333333%;}
+  .v9-bootstrap-grid > .col-lg-5 {width:41.666667%;}
+  .v9-bootstrap-grid > .col-lg-6 {width:50%;}
+  .v9-bootstrap-grid > .col-lg-7 {width:58.333333%;}
+  .v9-bootstrap-grid > .col-lg-8 {width:66.666667%;}
+}
+/* Visually align multi-column editorial sections when the viewport allows it. */
+.premium-hero-grid, .about-intro, .project-feature, .project-index-row,
+.features-editorial, .joinery-feature, .v8-lab, .capabilities-grid,
+.studies-grid, .about-education, .contact-layout, .resume-hero,
+.next-step-inner {align-items:center;}
+.meta-four {align-items:stretch;}
+.meta-four > div {min-width:0;}
+.project-feature.reverse .project-image-link {order:2;}
+.project-feature.reverse .project-feature-text {order:1;}
+@media (max-width:991.98px){
+  .project-feature.reverse .project-image-link {order:0;}
+  .project-feature.reverse .project-feature-text {order:1;}
+}
+
+/* 02. Focus and reading: sufficient space for accessible tap targets. */
+:root {--v9-focus:#c75c37;}
+:focus-visible {outline:3px solid var(--v9-focus);outline-offset:3px;}
+input:focus-visible,textarea:focus-visible,select:focus-visible {outline:3px solid var(--v9-focus);outline-offset:2px;}
+.navigation a, .chapter-nav a, .rule-link {text-underline-offset:4px;}
+.reading-button,.nav-trigger,.model-controls button,.assembly-toolbar button,
+.assembly-piece,.dock-actions button,.dock-piece {min-height:44px;}
+.eyebrow,.number-label,.microline,.case-kicker,.case-meta span,
+.model-info-label,.chapter-nav span,.image-frame figcaption {
+  font-size:max(11px, calc(11px * var(--text-zoom,1)));
+}
+.body-lead p,.reflection-grid p,.v8-stage p,.contact-primary p {line-height:1.78;}
+model-stage, .model-stage {touch-action:pan-y;}
+
+/* 03. Assembly workshop: reversible, legible and robust for touch + keyboard. */
+.assembly-next-step {
+  border-left:4px solid #d9ad6a;
+  padding:13px 15px;
+  background:#f5f0e5;
+  margin:14px 0;
+  color:#254237;
+  font-size:calc(14px * var(--text-zoom,1));
+  line-height:1.65;
+  font-weight:650;
+}
+.assembly-toolbar button[data-assembly="undo"] {
+  border:1px solid #56766b;
+  background:#e9f0e8;
+  color:#173d34;
+  font-weight:800;
+}
+.assembly-toolbar button:disabled,.dock-actions button:disabled {
+  opacity:.46;
+  cursor:not-allowed;
+}
+.model-keyboard-hint {
+  border-left:3px solid #bd855b;
+  padding-left:13px;
+  margin:12px 0 16px;
+  font-size:calc(13px * var(--text-zoom,1));
+  line-height:1.65;
+}
+.assembly-dock .dock-actions {flex-wrap:wrap;}
+.assembly-dock .dock-actions button {min-width:62px;}
+
+/* 04. Real contact form: opens mail client, never pretends to transmit data. */
+.v9-contact-form-wrap {background:#eaece5;}
+.v9-contact-title {font-size:clamp(2.8rem,5vw,5.2rem);}
+.v9-contact-context {margin:22px 0;max-width:48ch;color:#44554c;font-size:calc(16px * var(--text-zoom,1));}
+.v9-privacy-box {max-width:490px;padding:22px 25px;background:#fff;border-left:5px solid #b45e40;}
+.v9-privacy-box strong {font-size:calc(14px * var(--text-zoom,1));}
+.v9-privacy-box p {margin:5px 0 0;color:#4e6158;font-size:calc(13px * var(--text-zoom,1));}
+.v9-form {background:#fff;padding:clamp(22px,3.2vw,42px);border:1px solid #cdd7cc;box-shadow:0 17px 48px #14382f12;}
+.v9-form label {display:block;font-size:calc(13px * var(--text-zoom,1));font-weight:800;margin-bottom:8px;color:#213d33;}
+.v9-form input,.v9-form select,.v9-form textarea {
+  display:block;width:100%;min-height:49px;padding:13px 14px;
+  border:1px solid #91a89c;background:#fff;color:#1c352b;
+  border-radius:0;font-family:inherit;font-size:calc(15px * var(--text-zoom,1));
+}
+.v9-form textarea {min-height:144px;resize:vertical;}
+.v9-form-bottom {display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;}
+.v9-form-bottom span {font-size:calc(12px * var(--text-zoom,1));color:#52655c;}
+.v9-form-status {background:#edf4e9;color:#244737;font-size:calc(13px * var(--text-zoom,1));padding:13px 16px;margin:20px 0 0;line-height:1.6;}
+
+/* 05. Media descriptions are an honest textual alternative, not invented captions. */
+.v9-video-description {margin-top:15px;border-top:1px solid #ccd4cb;padding:13px 0 0;}
+.v9-video-description summary {cursor:pointer;font-size:calc(13px * var(--text-zoom,1));font-weight:800;}
+.v9-video-description p {margin:10px 0;font-size:calc(13px * var(--text-zoom,1));}
+
+/* 06. Mobile layout and high zoom support. */
+@media(max-width:767.98px){
+  .section {padding:65px 0;}
+  .shell {padding-left:23px;padding-right:23px;}
+  .project-feature,.project-index-row {margin-bottom:48px;padding-bottom:48px;}
+  .project-image-link {min-height:240px;height:310px;}
+  .index-visual {min-height:240px;height:300px;}
+  .about-intro .about-portrait {height:400px;}
+  .wide-case-photo {height:330px;}
+  .v9-bootstrap-grid {--bs-gutter-x:1.15rem;}
+  .v9-form-bottom .btn {width:100%;}
+  .assembly-next-step {font-size:calc(13px * var(--text-zoom,1));}
+}
+@media(max-width:390px){
+  .nav-trigger {min-width:50px;}
+  .wordmark-text {font-size:calc(12px * var(--text-zoom,1));}
+  .logo-square {width:34px;height:34px;}
+  .reading-button {min-width:38px;}
+  .model-keyboard-hint {font-size:calc(12px * var(--text-zoom,1));}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+/* A grid row carrying the site's own outer shell must retain centered margins.
+   Otherwise Bootstrap's standard negative row gutters overhang the viewport. */
+.shell.v9-bootstrap-grid {margin-left:auto;margin-right:auto;}

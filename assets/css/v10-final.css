@@ -1,0 +1,31 @@
+/* INFO1005 — Final editorial polish (V10)
+   Intentionally small, auditable enhancements on top of Bootstrap 5 and project CSS.
+   Responsive image dimensions are in markup; retain natural aspect ratios. */
+:root { --final-accent: #bd7853; }
+/* Reading position supports users through substantial case studies without distracting animation. */
+.reading-progress { position:absolute;left:0;right:0;bottom:0;height:3px;pointer-events:none;overflow:hidden; }
+.reading-progress-fill { display:block;width:100%;height:100%;background:linear-gradient(90deg,#d2996e 0%,#188b85 65%,#d6b25a 100%);transform:scaleX(0);transform-origin:left center; }
+/* Breadcrumbs clarify location in the information hierarchy. */
+.project-breadcrumb { border-bottom:1px solid #d4dbd2;background:#f6f5ef; }
+.project-breadcrumb ol { list-style:none;margin:0;display:flex;flex-wrap:wrap;gap:9px;align-items:center;padding:11px 0;font-size:calc(12px * var(--text-zoom,1));line-height:1.5; }
+.project-breadcrumb li:not(:last-child)::after { content:' /';color:#66746a;padding-left:9px; }
+.project-breadcrumb a {color:#285c4d;text-decoration:underline;text-underline-offset:4px;}
+.project-breadcrumb li[aria-current] {color:#39483f;font-weight:700;}
+/* Increase undersized utility and navigation text without diluting the visual hierarchy. */
+.navigation a {font-size:max(12px,calc(12px * var(--text-zoom,1)));}
+.wordmark-text small {font-size:max(10px,calc(10px * var(--text-zoom,1)));}
+.tiny-text,.eyebrow,.number-label,.microline {font-size:max(12px,calc(11px * var(--text-zoom,1)));}
+/* Clear focus target across contrast backgrounds. */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible {outline:3px solid #d18c56;outline-offset:3px;}
+.model-stage:focus-visible {outline:3px solid #daaa78;outline-offset:4px;}
+.gallery-dialog .dialog-photo {max-height:78vh;width:auto;height:auto;object-fit:contain;margin:0 auto;}
+/* Key interaction hints stay readable on small screens. */
+.model-keyboard-hint {font-size:max(13px,calc(13px * var(--text-zoom,1)));}
+@media (max-width:620px) {
+ .project-breadcrumb ol {padding:10px 0;font-size:calc(11px * var(--text-zoom,1));}
+ .reading-progress {height:2px;}
+ .gallery-dialog .dialog-photo {max-height:64vh;}
+}
+@media (prefers-reduced-motion:reduce) {
+ .reading-progress-fill {transition:none!important;}
+}

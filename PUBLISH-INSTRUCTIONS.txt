@@ -1,0 +1,1 @@
+Upload the extracted contents of this ZIP to the repository ROOT. Keep index.html beside the assets folder. Before public release, check the personal information in assets/pdf/dennis-tan-resume.pdf.
